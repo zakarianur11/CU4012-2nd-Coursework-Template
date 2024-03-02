@@ -148,6 +148,7 @@
     <ClInclude Include="Framework\GameObject.h" />
     <ClInclude Include="Framework\GameState.h" />
     <ClInclude Include="Framework\Input.h" />
+    <ClInclude Include="Framework\UICollsion.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Menu.h" />
   </ItemGroup>

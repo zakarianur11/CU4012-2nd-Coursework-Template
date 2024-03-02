@@ -1,1 +1,11 @@
-﻿  CU4012-SFML.vcxproj -> C:\Users\yadavu\Downloads\CU4012-Week-17-GameStates-LondonMet-main\CU4012-Week-17-GameStates-LondonMet-main\x64\Debug\CU4012-SFML.exe
+﻿  BaseLevel.cpp
+  Collision.cpp
+  GameObject.cpp
+  GameState.cpp
+  Input.cpp
+  Level.cpp
+  Main.cpp
+  Menu.cpp
+C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\CU4012-2nd-Coursework-Template\CU4012-SFML\Menu.cpp(19,33): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating Code...
+  CU4012-SFML.vcxproj -> C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\CU4012-2nd-Coursework-Template\x64\Debug\CU4012-SFML.exe
