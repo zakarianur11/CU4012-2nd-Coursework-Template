@@ -3,7 +3,7 @@
 #include "Framework/Input.h"
 #include "Framework/GameState.h"
 #include"Framework/Collision.h"
-#include "Framework/UICollsion.h"
+#include "Framework/UI.h"
 #include <string>
 #include <iostream>
 #include"Level.h"
@@ -32,11 +32,11 @@ public:
 	Level* level1;
 
 	int selectedItem;
-	sf::Font font;
-	sf::Font title;
+	sf::Font UIfont;
+	sf::Font titleFont;
+
 	sf::Text Title;
-	sf::Text menu[2];
-	UICollisionBox UICollisionBox[2];
+	UI UIText[2];
 	
 	void beginDraw();
 	void endDraw();

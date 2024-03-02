@@ -10,8 +10,8 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	level1 = new Level(window, input, gameState);
 
 
-	font.loadFromFile("font/ZOMBIES REBORN.ttf");
-	title.loadFromFile("font/BloodBlocks Project.ttf");
+	UIfont.loadFromFile("font/ZOMBIES REBORN.ttf");
+	titleFont.loadFromFile("font/BloodBlocks Project.ttf");
 
 
 	menu_texture.loadFromFile("gfx/menu.png");
@@ -19,7 +19,7 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	menu_sprite.setScale(0.35, 0.32);
 
 
-	Title.setFont(title);
+	Title.setFont(titleFont);
 	Title.setFillColor(sf::Color::Magenta);
 	Title.setString("My Game");
 	Title.setOutlineColor(sf::Color::Black);
@@ -27,19 +27,19 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	Title.setPosition(500, 50);
 
 
-	menu[0].setFont(font);
-	menu[0].setFillColor(sf::Color::Red);
-	menu[0].setString("Play");
-	menu[0].setPosition(sf::Vector2f(600,120));
-	UICollisionBox[0].setCollisionBox(sf::FloatRect(600, 135, 35, 15));
+	UIText[0].text.setFont(UIfont);
+	UIText[0].text.setFillColor(sf::Color::Red);
+	UIText[0].text.setString("Play");
+	UIText[0].text.setPosition(sf::Vector2f(600,120));
+	UIText[0].setCollisionBox(sf::FloatRect(600, 135, 35, 15));
 
 
 
-	menu[1].setFont(font);
-	menu[1].setFillColor(sf::Color::White);
-	menu[1].setString("Exit");
-	menu[1].setPosition(sf::Vector2f(600,150));
-	UICollisionBox[1].setCollisionBox(sf::FloatRect(600, 165, 35, 15));
+	UIText[1].text.setFont(UIfont);
+	UIText[1].text.setFillColor(sf::Color::White);
+	UIText[1].text.setString("Exit");
+	UIText[1].text.setPosition(sf::Vector2f(600,150));
+	UIText[1].setCollisionBox(sf::FloatRect(600, 165, 35, 15));
 
 
 
@@ -61,7 +61,7 @@ void Menu::update(float dt)
 	MousePos.y = input->getMouseY();
 
 	for (int i = 0; i < 2; i++) {
-		if (Collision::checkBoundingBox(UICollisionBox[i].getCollisionBox(), MousePos)) {
+		if (Collision::checkBoundingBox(UIText[i].getCollisionBox(), MousePos)) {
 			if (!mouseOverAnyItem) { // Only change if the mouse wasn't already over an item
 				selectedItem = i;
 				mouseOverAnyItem = true;
@@ -76,9 +76,9 @@ void Menu::updateVisualFeedback()
 {
     for (int i = 0; i < 2; i++) {
         if (i == selectedItem) {
-            menu[i].setFillColor(sf::Color::Red); // Highlight selected item
+			UIText[i].text.setFillColor(sf::Color::Red); // Highlight selected item
         } else {
-            menu[i].setFillColor(sf::Color::White); // Default color for non-selected items
+            UIText[i].text.setFillColor(sf::Color::White); // Default color for non-selected items
         }
     }
 }
@@ -87,18 +87,18 @@ void Menu::MoveUp()
 {
 	if (selectedItem - 1 >= 0)
 	{
-		menu[selectedItem].setFillColor(sf::Color::White);
+		UIText[selectedItem].text.setFillColor(sf::Color::White);
 		selectedItem--;
-		menu[selectedItem].setFillColor(sf::Color::Red);
+		UIText[selectedItem].text.setFillColor(sf::Color::Red);
 	}
 }
 void Menu::MoveDown()
 {
 	if (selectedItem + 1 < 2)
 	{
-		menu[selectedItem].setFillColor(sf::Color::White);
+		UIText[selectedItem].text.setFillColor(sf::Color::White);
 		selectedItem++;
-		menu[selectedItem].setFillColor(sf::Color::Red);
+		UIText[selectedItem].text.setFillColor(sf::Color::Red);
 	}
 
 }
@@ -148,13 +148,13 @@ void Menu::render()
 	window->draw(Title);
 	for (int i = 0; i < 2; i++)
 	{
-		window->draw(menu[i]);
+		window->draw(UIText[i].text);
 	}
 
 	//Uncomment so debug shapes for the menu text
 	//for (int i = 0; i < 2; i++)
 	//{
-	//	window->draw(UICollisionBox[i].getDebugShape());
+	//	window->draw(UIText[i].getDebugShape());
 	//}
 
 	endDraw();

@@ -1,10 +1,4 @@
-﻿  BaseLevel.cpp
-  Collision.cpp
-  GameObject.cpp
-  GameState.cpp
-  Input.cpp
-  Level.cpp
-  Main.cpp
+﻿  Main.cpp
   Menu.cpp
 C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\CU4012-2nd-Coursework-Template\CU4012-SFML\Menu.cpp(19,33): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating Code...

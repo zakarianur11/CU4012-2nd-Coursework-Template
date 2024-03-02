@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class UICollisionBox 
+class UI 
 {
     sf::FloatRect collisionBox;
     sf::RectangleShape debugShape;
@@ -13,7 +13,10 @@ class UICollisionBox
         debugShape.setSize(sf::Vector2f(collisionBox.width, collisionBox.height));
     }
 public:
-    UICollisionBox() {
+
+    sf::Text text;
+
+    UI() {
         debugShape.setFillColor(sf::Color::Transparent);
         debugShape.setOutlineColor(sf::Color::Red);
         debugShape.setOutlineThickness(1.0f);

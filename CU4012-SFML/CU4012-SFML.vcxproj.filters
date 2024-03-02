@@ -65,7 +65,7 @@
     <ClInclude Include="Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\UICollsion.h">
+    <ClInclude Include="Framework\UI.h">
       <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
