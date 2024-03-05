@@ -6,7 +6,8 @@
 #include "Framework/GameState.h"
 #include <string>
 #include <iostream>
-
+#include "Player.h"
+#include "Enemy.h"
 
 class Level : public BaseLevel{
 public:
@@ -19,5 +20,7 @@ public:
 
 private:
 	// Default variables for level class.
+	Player p1;
+	Enemy e1;
 
 };

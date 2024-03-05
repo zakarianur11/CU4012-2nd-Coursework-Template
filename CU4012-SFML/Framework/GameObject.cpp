@@ -5,7 +5,7 @@ GameObject::GameObject()
 	input = nullptr;
 	window = nullptr;
 	alive = true;
-	collider = false;
+	Colliding = false;
 }
 
 GameObject::~GameObject()
@@ -43,7 +43,22 @@ sf::Vector2f GameObject::getVelocity()
 // Returns collision box + position, giving the collision box in the correct position
 sf::FloatRect GameObject::getCollisionBox() {
 	
-	return sf::FloatRect(collisionBox.left + getPosition().x - getOrigin().x, collisionBox.top + getPosition().y - getOrigin().y, collisionBox.width, collisionBox.height); 
+	return collisionBox;
+
+}
+
+void GameObject::setDebugCollisionBox(float x, float y, float w, float h)
+{
+	collisionBoxDebug.setPosition(sf::Vector2f(x, y));
+	collisionBoxDebug.setSize(sf::Vector2f(w, h));
+	collisionBoxDebug.setFillColor(sf::Color::Transparent);
+	collisionBoxDebug.setOutlineColor(sf::Color::Red);
+	collisionBoxDebug.setOutlineThickness(1.f);
+}
+
+bool GameObject::checkCollision(sf::FloatRect otherBox)
+{
+	return collisionBox.intersects(otherBox);
 }
 
 // Reponse function, what the sprite does based on collision
@@ -52,4 +67,5 @@ sf::FloatRect GameObject::getCollisionBox() {
 // e.g. checking sprite type (world, enemy, bullet etc) so response is based on that.
 void GameObject::collisionResponse(GameObject * collider)
 {
+
 }
