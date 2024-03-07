@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Enemy.h"
+#include "Ground.h"
 
 class Level : public BaseLevel{
 public:
@@ -22,5 +23,9 @@ private:
 	// Default variables for level class.
 	Player p1;
 	Enemy e1;
+
+	Ground ground;
+	
+
 
 };

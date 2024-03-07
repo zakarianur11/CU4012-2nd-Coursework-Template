@@ -12,6 +12,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
 
 
 	e1.setPosition(500, 100);
+
 }
 
 Level::~Level()
@@ -55,5 +56,9 @@ void Level::render()
 
 	window->draw(e1);
 	window->draw(e1.getDebugCollisionBox());
+
+
+	window->draw(ground.getDebugCollisionBox());
+
 	endDraw();
 }

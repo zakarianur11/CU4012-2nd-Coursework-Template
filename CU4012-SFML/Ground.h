@@ -3,9 +3,7 @@
 class Ground :
     public GameObject
 {
-    sf::RectangleShape ground;
-
-private:
-
+public:
+    Ground();
 };
 
