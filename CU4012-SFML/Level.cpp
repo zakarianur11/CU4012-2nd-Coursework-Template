@@ -1,18 +1,19 @@
 #include "Level.h"
 
-Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
+Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 {
 	window = hwnd;
 	input = in;
 	gameState = gs;
-
+	world = w;
 	// initialise game objects
 	p1.setPosition(100, 100);
 	p1.setInput(input);
 
-
 	e1.setPosition(500, 100);
-
+	world->AddGameObject(p1);
+	world->AddGameObject(e1);
+	world->AddGameObject(ground);
 }
 
 Level::~Level()
@@ -33,16 +34,9 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
-	p1.update(dt);
-	e1.update(dt);
-
-	if (p1.checkCollision(e1.getCollisionBox()))
-	{
-		p1.collisionResponse(&e1);
-	}
-	else
-	{
-		p1.setColliding(false);
+	if(p1.CollisionWithTag("Ground"))
+	{ 
+		std::cout<<"Player collided with Ground" << std::endl;
 	}
 }
 

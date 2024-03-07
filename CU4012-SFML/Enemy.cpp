@@ -13,13 +13,12 @@ Enemy::Enemy()
 	setTexture(&texture);
 	setSize(sf::Vector2f(100, 100));
 	setCollisionBox(getPosition(), getSize());
+	setTag("enemy");
+	setMass(50.f);
 
 }
 
 void Enemy::update(float dt)
 {
-	setCollisionBox(getPosition(), getSize());
-
-
-	move(velocity * speed * dt);
+	//move(velocity * speed * dt);
 }

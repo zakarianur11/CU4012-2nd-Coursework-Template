@@ -51,6 +51,9 @@
     <ClCompile Include="Ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\World.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
