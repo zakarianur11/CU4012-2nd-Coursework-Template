@@ -26,11 +26,11 @@ void World::UpdatePhysics(float deltaTime)
     // Apply gravity to all non-static objects and update their physics
     for (auto& obj : objects) {
         if (!obj->getStatic()) {
-            //obj->move(gravity * obj->getMass() * deltaTime);
+            obj->move(gravity * obj->getMass() * deltaTime);
         }
-        // Update the object based on its velocity
-        obj->updateCollisionBox(deltaTime);
-        obj->move(obj->getVelocity() * deltaTime);
+        // Update object physics
+        obj->UpdatePhysics(&gravity, deltaTime);
+        obj->update(deltaTime);
     }
     // Handle collision checks
     for (auto it1 = objects.begin(); it1 != objects.end(); ++it1) {

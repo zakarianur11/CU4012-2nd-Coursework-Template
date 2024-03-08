@@ -34,9 +34,9 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
-	if(p1.CollisionWithTag("Ground"))
+	if(p1.CollisionWithTag("Enemy"))
 	{ 
-		std::cout<<"Player collided with Ground" << std::endl;
+		
 	}
 }
 

@@ -74,7 +74,7 @@ public:
 
 
 	// Physics functions
-
+	void UpdatePhysics(sf::Vector2f* gravity,float deltaTime);
 	float restitution = 1;
 
 	void setStatic(bool s) { isStatic = s; }

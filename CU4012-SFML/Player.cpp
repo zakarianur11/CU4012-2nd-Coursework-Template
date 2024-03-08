@@ -33,15 +33,13 @@ void Player::handleInput(float dt)
 
 	else if (input->isKeyDown(sf::Keyboard::W))
 	{
-		velocity = sf::Vector2f(0, -1*speed);
-		//input->setKeyUp(sf::Keyboard::W);
-		//applyImpulse(sf::Vector2f(0, -100));
+		applyImpulse(sf::Vector2f(0, -1*speed));
+	
 	}
 	else
 	{
 		velocity = sf::Vector2f(0, 0);
 	}
-					
 }
 
 void Player::update(float dt)

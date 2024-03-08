@@ -52,7 +52,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Framework\World.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
