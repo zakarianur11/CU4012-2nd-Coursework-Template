@@ -12,7 +12,24 @@
 	}
 }
 ```
+Make sure to add all the gameObjects into the world 
+```c++
+Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
+{
+	window = hwnd;
+	input = in;
+	gameState = gs;
+	world = w;
+	// initialise game objects
+	p1.setPosition(100, 100);
+	p1.setInput(input);
 
+	e1.setPosition(500, 100);
+	world->AddGameObject(p1);
+	world->AddGameObject(e1);
+	world->AddGameObject(ground);
+}
+```
  To make ground or objects that shouldn't be affected by gravity you can turn on isStatic when initialising the constructor 
  for example you create a class called Ground that is derived from GameObject 
  inside the constructor 
