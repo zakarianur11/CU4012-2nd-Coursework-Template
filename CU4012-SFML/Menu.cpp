@@ -6,9 +6,6 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	input = in;
 	gameState = game;
 
-	Level level(window, input, gameState);
-	level1 = new Level(window, input, gameState);
-
 
 	UIfont.loadFromFile("font/ZOMBIES REBORN.ttf");
 	titleFont.loadFromFile("font/BloodBlocks Project.ttf");

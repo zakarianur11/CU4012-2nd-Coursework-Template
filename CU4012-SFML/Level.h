@@ -4,6 +4,7 @@
 #include "Framework/BaseLevel.h"
 #include "Framework/Input.h"
 #include "Framework/GameState.h"
+#include "Framework/World.h"
 #include <string>
 #include <iostream>
 #include "Player.h"
@@ -12,7 +13,7 @@
 
 class Level : public BaseLevel{
 public:
-	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs);
+	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w);
 	~Level();
 
 	void handleInput(float dt) override;

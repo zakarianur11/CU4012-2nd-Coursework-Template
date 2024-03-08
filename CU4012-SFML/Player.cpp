@@ -3,7 +3,7 @@
 Player::Player()
 {
 	health = 100;
-	speed = 150;
+	speed = 200;
 
 	if (!texture.loadFromFile("gfx/Mushroom.png"))
 	{
@@ -12,47 +12,36 @@ Player::Player()
 	setTexture(&texture);
 	setSize(sf::Vector2f(100, 100));
 	setCollisionBox(getPosition(), getSize());
+	setMass(100.f);
+	setTag("Player");
 }
 
 void Player::handleInput(float dt)
 {
 	if (input->isKeyDown(sf::Keyboard::A))
 	{
-		velocity = sf::Vector2f(1, 0);
-		move(-velocity*speed *dt);
+		velocity = sf::Vector2f(-1*speed, 0);
 	}
-	if (input->isKeyDown(sf::Keyboard::D))
+	else if (input->isKeyDown(sf::Keyboard::D))
 	{
-		velocity = sf::Vector2f(1, 0);
-		move(velocity * speed * dt);
+		velocity = sf::Vector2f(1*speed, 0);
+	}
+	else if(input->isKeyDown(sf::Keyboard::S))
+	{
+		velocity = sf::Vector2f(0, 1*speed);
 	}
 
-	if (input->isKeyDown(sf::Keyboard::W))
+	else if (input->isKeyDown(sf::Keyboard::W))
 	{
-		velocity = sf::Vector2f(0, 1);
-		move(-velocity * speed * dt);
+		applyImpulse(sf::Vector2f(0, -1*speed));
+	
 	}
-	if (input->isKeyDown(sf::Keyboard::S))
+	else
 	{
-		velocity = sf::Vector2f(0, 1);
-		move(velocity * speed * dt);
+		velocity = sf::Vector2f(0, 0);
 	}
 }
 
 void Player::update(float dt)
 {
-	setCollisionBox(getPosition(), getSize());
-
-	if (!Colliding)
-	{
-		lastSafePosition = this->getPosition();
-	}
 }
-
-void Player::collisionResponse(GameObject* collider)
-{
-	this->setColliding(true);
-	collider->setVelocity(sf::Vector2f(0, 0));
-	setPosition(lastSafePosition);
-}
-
