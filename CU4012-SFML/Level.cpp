@@ -10,10 +10,8 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 	p1.setPosition(100, 100);
 	p1.setInput(input);
 
-	e1.setPosition(500, 100);
+
 	world->AddGameObject(p1);
-	world->AddGameObject(e1);
-	world->AddGameObject(ground);
 
 	tileManager.setInput(input);
 	tileManager.setWindow(window);
@@ -27,6 +25,8 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 	{
 		std::cout << "Tiles loaded\n";
 	}
+	mapBackground.setWindow(window);
+	mapBackground.setInput(input);
 
 
 
@@ -56,7 +56,7 @@ void Level::update(float dt)
 	{ 
 		
 	}
-
+	mapBackground.update(dt, p1.getPosition());
 	tileManager.update(dt);
 }
 
@@ -64,15 +64,12 @@ void Level::update(float dt)
 void Level::render()
 {
 	beginDraw();
+
+	window->draw(mapBackground);
+
+
 	window->draw(p1);
 	window->draw(p1.getDebugCollisionBox());
-
-
-	window->draw(e1);
-	window->draw(e1.getDebugCollisionBox());
-
-
-	window->draw(ground.getDebugCollisionBox());
 
 
 	tileManager.render();

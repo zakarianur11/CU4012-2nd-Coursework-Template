@@ -5,7 +5,7 @@ Player::Player()
 	health = 100;
 	speed = 200;
 
-	if (!texture.loadFromFile("gfx/Mushroom.png"))
+	if (!texture.loadFromFile("gfx/sonicCharacter.png"))
 	{
 		std::cout << "File not found\n";
 	}

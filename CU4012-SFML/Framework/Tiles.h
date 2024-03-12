@@ -5,6 +5,8 @@ class Tiles :
 {
     bool editing; // To track editing mode
     bool addedToWorld = false;
+    float rotationSpeed = 100.0f; // This is the rotation speed in degrees per second.
+
 public:
     Tiles();
 

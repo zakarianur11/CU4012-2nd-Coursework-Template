@@ -1,5 +1,2 @@
-﻿  TileManager.cpp
-C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\CU4012-2nd-Coursework-Template\CU4012-SFML\Framework\TileManager.cpp(22,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Tiles.cpp
-  Generating Code...
-  CU4012-SFML.vcxproj -> C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\CU4012-2nd-Coursework-Template\x64\Debug\CU4012-SFML.exe
+﻿  Tiles.cpp
+  CU4012-SFML.vcxproj -> C:\Users\ZAN0106\Documents\GitHub\CU4012-2nd-Coursework-Template\x64\Debug\CU4012-SFML.exe
