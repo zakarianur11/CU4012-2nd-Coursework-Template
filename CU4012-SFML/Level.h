@@ -5,6 +5,7 @@
 #include "Framework/Input.h"
 #include "Framework/GameState.h"
 #include "Framework/World.h"
+#include "Framework/TileManager.h"
 #include <string>
 #include <iostream>
 #include "Player.h"
@@ -27,6 +28,6 @@ private:
 
 	Ground ground;
 	
-
+	TileManager tileManager;
 
 };

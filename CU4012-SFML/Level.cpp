@@ -14,6 +14,22 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 	world->AddGameObject(p1);
 	world->AddGameObject(e1);
 	world->AddGameObject(ground);
+
+	tileManager.setInput(input);
+	tileManager.setWindow(window);
+	tileManager.setWorld(world);
+
+	if (!tileManager.loadTiles())
+	{
+		std::cout << "Tiles not found\n";
+	}
+	else
+	{
+		std::cout << "Tiles loaded\n";
+	}
+
+
+
 }
 
 Level::~Level()
@@ -29,6 +45,8 @@ void Level::handleInput(float dt)
 		exit(0);
 	}
 	p1.handleInput(dt);
+
+	tileManager.handleInput(dt);
 }
 
 // Update game objects
@@ -38,6 +56,8 @@ void Level::update(float dt)
 	{ 
 		
 	}
+
+	tileManager.update(dt);
 }
 
 // Render level
@@ -54,5 +74,7 @@ void Level::render()
 
 	window->draw(ground.getDebugCollisionBox());
 
+
+	tileManager.render();
 	endDraw();
 }
