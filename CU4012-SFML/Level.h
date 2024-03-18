@@ -19,13 +19,22 @@ public:
 	void handleInput(float dt) override;
 	void update(float dt) override;
 	void render();
+	void moveView(float dt);
 
+	void adjustViewToWindowSize(unsigned int width, unsigned int height);
 private:
 	// Default variables for level class.
 	Player p1;
 	
 	TileManager tileManager;
 
+	sf::View view;
 
+	bool editMode;
+
+	sf::Text TileEditorText;
+	sf::Font font;
 	Background mapBackground;
+
+
 };

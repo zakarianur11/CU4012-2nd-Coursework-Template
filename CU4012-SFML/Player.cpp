@@ -3,7 +3,7 @@
 Player::Player()
 {
 	health = 100;
-	speed = 200;
+	speed = 500;
 
 	if (!texture.loadFromFile("gfx/sonicCharacter.png"))
 	{
@@ -18,27 +18,23 @@ Player::Player()
 
 void Player::handleInput(float dt)
 {
+	velocity.x = 0.f;
+
+	// Update velocity based on input
 	if (input->isKeyDown(sf::Keyboard::A))
 	{
-		velocity = sf::Vector2f(-1*speed, 0);
+		// Update only the horizontal component, preserving vertical velocity
+		velocity.x = -speed;
 	}
-	else if (input->isKeyDown(sf::Keyboard::D))
+	if (input->isKeyDown(sf::Keyboard::D))
 	{
-		velocity = sf::Vector2f(1*speed, 0);
-	}
-	else if(input->isKeyDown(sf::Keyboard::S))
-	{
-		velocity = sf::Vector2f(0, 1*speed);
+		// Update only the horizontal component, preserving vertical velocity
+		velocity.x = speed;
 	}
 
-	else if (input->isKeyDown(sf::Keyboard::W))
+	if (input->isKeyDown(sf::Keyboard::Space) && canJump)
 	{
-		applyImpulse(sf::Vector2f(0, -1*speed));
-	
-	}
-	else
-	{
-		velocity = sf::Vector2f(0, 0);
+		Jump(350.f);
 	}
 }
 

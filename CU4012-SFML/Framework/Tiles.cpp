@@ -3,27 +3,24 @@
 Tiles::Tiles()
 {
 	setSize(sf::Vector2f(50, 50));
+
+
 	setStatic(true);
+	setTile(true);
 	//setMass(50.f);
 	editing = true;
 }
 
 void Tiles::update(float dt)
 {
-		// Set the collision box to be the same as the sprite
-		updateCollisionBox(dt);	
+	// Set the collision box to be the same as the sprite
+	updateCollisionBox(dt);
 }
 
 void Tiles::handleInput(float dt)
 {
-	if (input->isKeyDown(sf::Keyboard::Return) && editing) {
-		editing = false;
-		std::cout << "Editing: " << editing << std::endl;
 
-	}
-
-
-	if(editing)
+	if (editing)
 	{
 		// Move the tile
 		float moveSpeed = 50.0f; // Speed of movement
@@ -41,39 +38,48 @@ void Tiles::handleInput(float dt)
 			setPosition(getPosition().x, getPosition().y + moveSpeed * dt);
 		}
 
-
+		float resizeSpeed = 0.1f; // Speed of resizing	
 		//Resize the tile
 		if (input->isKeyDown(sf::Keyboard::J))
 		{
-			setSize(sf::Vector2f(getSize().x - 1, getSize().y));
-		}
-		if (input->isKeyDown(sf::Keyboard::L))
-		{
-			setSize(sf::Vector2f(getSize().x + 1, getSize().y));
-		}
-		if (input->isKeyDown(sf::Keyboard::I))
-		{
-			setSize(sf::Vector2f(getSize().x, getSize().y - 1));
-		}
-		if (input->isKeyDown(sf::Keyboard::K))
-		{
-			setSize(sf::Vector2f(getSize().x, getSize().y + 1));
+			setSize(sf::Vector2f(getSize().x - resizeSpeed, getSize().y));
 		}
 
-		if (input->isKeyDown(sf::Keyboard::O))
+
+		if (input->isKeyDown(sf::Keyboard::L))
 		{
-			// Rotate counterclockwise
-			float currentRotation = getRotation(); // Assume getRotation() retrieves the current rotation
-			currentRotation -= rotationSpeed; // Decrease the rotation based on the time and speed
-			rotate(currentRotation); // Set the new rotation
+			setSize(sf::Vector2f(getSize().x + resizeSpeed, getSize().y));
 		}
-		if (input->isKeyDown(sf::Keyboard::P))
+
+		if (input->isKeyDown(sf::Keyboard::I))
 		{
-			// Rotate clockwise
-			float currentRotation = getRotation(); // Assume getRotation() retrieves the current rotation
-			currentRotation += rotationSpeed * dt; // Increase the rotation based on the time and speed
-			rotate(currentRotation); // Set the new rotation
+			setSize(sf::Vector2f(getSize().x, getSize().y - resizeSpeed));
+		}
+
+		if (input->isKeyDown(sf::Keyboard::K))
+		{
+			setSize(sf::Vector2f(getSize().x, getSize().y + resizeSpeed));
+		}
+
+		if (input->isKeyDown(sf::Keyboard::B))
+		{
+			input->setKeyUp(sf::Keyboard::B);
+			setTag("Wall");
+			//std::cout << "Wall\n";
+		}
+		if (input->isKeyDown(sf::Keyboard::M))
+		{
+			input->setKeyUp(sf::Keyboard::M);
+			setTag("Ring");
+			setTrigger(true);
+			setMassless(true);
 		}
 	}
+
+	//// Check to exit editing mode
+	//if (input->isKeyDown(sf::Keyboard::Return)) {
+	//	editing = false;
+	//	input->setKeyUp(sf::Keyboard::Return); // Acknowledge the key press to prevent sticking
+	//}
 
 }

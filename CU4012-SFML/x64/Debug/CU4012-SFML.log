@@ -1,2 +1,3 @@
-﻿  Tiles.cpp
-  CU4012-SFML.vcxproj -> C:\Users\ZAN0106\Documents\GitHub\CU4012-2nd-Coursework-Template\x64\Debug\CU4012-SFML.exe
+﻿  TileManager.cpp
+C:\Users\ZAN0106\Downloads\CU4012-2nd-Coursework-Template-main\CU4012-2nd-Coursework-Template-main\CU4012-SFML\Framework\TileManager.cpp(48,51): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  CU4012-SFML.vcxproj -> C:\Users\ZAN0106\Downloads\CU4012-2nd-Coursework-Template-main\CU4012-2nd-Coursework-Template-main\x64\Debug\CU4012-SFML.exe

@@ -20,6 +20,8 @@ class TileManager :
     std::string filePath; // File to store tile data
 
     World* world;
+
+    sf::Texture tileTexture;
 public:
     TileManager();
 
@@ -33,5 +35,9 @@ public:
     std::vector<std::unique_ptr<Tiles>>& getTiles();
 
     void setWorld(World* world) { this->world = world; }
+
+    std::string getFilePath() { return filePath; }
+
+    void setCustomTexture(std::string path);
 };
 
