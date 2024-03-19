@@ -21,7 +21,11 @@ class TileManager :
 
     World* world;
 
-    sf::Texture tileTexture;
+    sf::Texture collectableTexture;
+    sf::Texture platformTexture;
+
+    bool showDebugCollisionBox;
+
 public:
     TileManager();
 
@@ -38,6 +42,13 @@ public:
 
     std::string getFilePath() { return filePath; }
 
-    void setCustomTexture(std::string path);
+    void setCollectableTexture(std::string path);
+
+    void setPlatformTexture(std::string path);
+
+    void RemoveCollectableTile();
+
+    void ShowDebugCollisionBox(bool b) { showDebugCollisionBox = b; }
+
 };
 

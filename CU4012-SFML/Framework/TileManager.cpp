@@ -41,7 +41,15 @@ void TileManager::handleInput(float dt)
                 newTile->setPosition(worldPos.x, worldPos.y);
                 if (newTile->getTag() == "Ring")
                 {
-                    newTile->setTexture(&tileTexture);
+                    newTile->setTexture(&collectableTexture);
+                    newTile->setTrigger(true);
+                    newTile->setMassless(true);
+                    newTile->setStatic(false);
+
+                }
+                if (newTile->getTag() == "Platform")
+                {
+                    newTile->setTexture(&platformTexture);
                 }
                 world->AddGameObject(*newTile);
                 tiles.push_back(std::move(newTile));
@@ -113,7 +121,11 @@ void TileManager::render()
             {
                 window->draw(*tilePtr); // Dereference the pointer to get the Tiles object
             }
-            window->draw(tilePtr->getDebugCollisionBox());
+            if (tilePtr->getTag() == "Platform")
+            {
+                window->draw(*tilePtr); // Dereference the pointer to get the Tiles object
+            }
+            if(showDebugCollisionBox) window->draw(tilePtr->getDebugCollisionBox());
         }
     }
 }
@@ -162,9 +174,16 @@ bool TileManager::loadTiles()
                 newTile->setSize(sf::Vector2f(std::stof(seglist[3]), std::stof(seglist[4])));
                 if (newTile->getTag() == "Ring")
                 {
-                    newTile->setTexture(&tileTexture);
+                    newTile->setTexture(&collectableTexture);
+                    newTile->setTrigger(true);
+                    newTile->setStatic(false);
+                    newTile->setMassless(true);
                 }
-
+                if (newTile->getTag() == "Platform")
+                {
+                    std::cout << "Platform Found in the data\n";
+                    newTile->setTexture(&platformTexture);
+                }
                 world->AddGameObject(*newTile);
                 tiles.push_back(std::move(newTile));
                 //std::cout<<"Tiles: "<<tiles.size()<<std::endl;  
@@ -173,7 +192,6 @@ bool TileManager::loadTiles()
         }
 
         return true;
-
     }
 
     return false;
@@ -183,11 +201,35 @@ std::vector<std::unique_ptr<Tiles>>& TileManager::getTiles() {
     return tiles;
 }
 
-void TileManager::setCustomTexture(std::string path)
+void TileManager::setCollectableTexture(std::string path)
 {
-    if (!tileTexture.loadFromFile(path))
+    if (!collectableTexture.loadFromFile(path))
     {
         std::cout << "Tile Manager file not found\n";
     }
+}
+
+void TileManager::setPlatformTexture(std::string path)
+{
+    if (!platformTexture.loadFromFile(path))
+    {
+        std::cout << "Tile Manager file not found\n";
+    }
+}
+
+void TileManager::RemoveCollectableTile()
+{
+    auto newEnd = std::remove_if(tiles.begin(), tiles.end(),
+        [this](const std::unique_ptr<Tiles>& tilePtr) -> bool 
+        {
+            if (tilePtr->CollisionWithTag("Player"))
+            {
+                world->RemoveGameObject(*tilePtr);
+                return true; // Mark for removal
+            }
+            return false; // Keep in the vector
+        });
+
+    tiles.erase(newEnd, tiles.end());
 }
 

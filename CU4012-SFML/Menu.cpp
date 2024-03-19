@@ -28,7 +28,7 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	UIText[0].text.setFillColor(sf::Color::Red);
 	UIText[0].text.setString("Play");
 	UIText[0].text.setPosition(sf::Vector2f(600,120));
-	UIText[0].setCollisionBox(sf::FloatRect(600, 135, 35, 15));
+	UIText[0].setCollisionBox(sf::FloatRect(UIText[0].text.getPosition().x, UIText[0].text.getPosition().y+15, 35, 15));
 
 
 
@@ -36,7 +36,7 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	UIText[1].text.setFillColor(sf::Color::White);
 	UIText[1].text.setString("Exit");
 	UIText[1].text.setPosition(sf::Vector2f(600,150));
-	UIText[1].setCollisionBox(sf::FloatRect(600, 165, 35, 15));
+	UIText[1].setCollisionBox(sf::FloatRect(UIText[1].text.getPosition().x, UIText[1].text.getPosition().y + 15, 35, 15));
 
 
 

@@ -18,6 +18,9 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 	TileEditorText.setCharacterSize(24);
 	TileEditorText.setFillColor(sf::Color::Red);
 
+
+
+
 	TileEditorText.setString(" Press E to edit tiles");
 	TileEditorText.setPosition(0, 0);
 
@@ -25,13 +28,21 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 	p1.setPosition(100, 100);
 	p1.setInput(input);
 
+	RingsCollectedText.setFont(font);
+	RingsCollectedText.setCharacterSize(24);
+	RingsCollectedText.setFillColor(sf::Color::Black);
+	RingsCollectedText.setPosition(window->getSize().x, 0);
+	RingsCollectedText.setString("Rings Collected:");
+
 
 	world->AddGameObject(p1);
 
+	tileManager.setCollectableTexture("gfx/Ring.png");
+	tileManager.setPlatformTexture("gfx/Platform.png");
 	tileManager.setInput(input);
 	tileManager.setWindow(window);
 	tileManager.setWorld(world);
-	tileManager.setCustomTexture("gfx/Ring.png");
+	tileManager.ShowDebugCollisionBox(true);
 
 	if (!tileManager.loadTiles())
 	{
@@ -95,17 +106,29 @@ void Level::update(float dt)
 {
 
 	sf::Vector2f viewSize = sf::Vector2f(window->getSize().x, window->getSize().y);
-
+	RingsCollectedText.setPosition(view.getCenter().x - viewSize.x / 14, view.getCenter().y - viewSize.y / 2);
+	
 	if(p1.CollisionWithTag("Enemy"))
 	{ 
 		
+	}
+	if (p1.CollisionWithTag("Ring"))
+	{
+		// Player is Colliding with Ring
+		p1.addRingCollected(1); // Increment ring count
+		tileManager.RemoveCollectableTile(); // Remove the collectable tile
+		p1.updatePlayerAttributes();
+
+		// Update the RingsCollectedText to display the new number of rings collected
+		int ringCount = p1.getRingCount(); // Assume p1 is the player object and has the getRingCount method
+		RingsCollectedText.setString("Rings Collected: " + std::to_string(ringCount));
 	}
 
 
 	if (editMode)
 	{
 		TileEditorText.setPosition(view.getCenter().x - viewSize.x / 2, view.getCenter().y - viewSize.y / 2);
-		TileEditorText.setString("Editing mode\nLeft Mouse Button to place tile\nPress B to set collider as a wall (allows bouncing) \nPress E to exit and Save");
+		TileEditorText.setString("Editing mode\nLeft Mouse Button to place tile\nPress B to set collider as a wall (allows bouncing)\n Press C to make it a collectable\n Press P to make it a Platform\nPress E to exit and Save");
 		tileManager.handleInput(dt);
 		tileManager.update(dt);
 	}
@@ -118,7 +141,7 @@ void Level::update(float dt)
 
 		sf::Vector2f playerPosition = p1.getPosition();
 		float newX = std::max(playerPosition.x, view.getSize().x / 2.0f);
-		view.setCenter(newX, playerPosition.y-200);
+		view.setCenter(newX, view.getCenter().y);
 		window->setView(view);
 	}
 }
@@ -136,7 +159,9 @@ void Level::render()
 
 
 	tileManager.render();
-	window->draw(TileEditorText);
+	if(editMode) window->draw(TileEditorText);
+	window->draw(RingsCollectedText);
+
 
 	endDraw();
 }

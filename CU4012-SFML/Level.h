@@ -25,7 +25,8 @@ public:
 private:
 	// Default variables for level class.
 	Player p1;
-	
+	sf::Text RingsCollectedText;
+
 	TileManager tileManager;
 
 	sf::View view;

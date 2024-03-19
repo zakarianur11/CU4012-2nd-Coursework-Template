@@ -277,8 +277,11 @@ void GameObject::collisionResponse(GameObject* collider)
     {
         collidingTag = collider->getTag();
     }
+    else if (collider->getTile() && collider->getTag() == "Ring")
+    {
+        collidingTag = collider->getTag();
+    }
 }
-
 void GameObject::Jump(float jumpHeight)
 {
     velocity.y = -sqrt(2.0f * 981.0f * jumpHeight);

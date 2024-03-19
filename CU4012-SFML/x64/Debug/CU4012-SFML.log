@@ -1,3 +1,43 @@
-﻿  TileManager.cpp
-C:\Users\ZAN0106\Downloads\CU4012-2nd-Coursework-Template-main\CU4012-2nd-Coursework-Template-main\CU4012-SFML\Framework\TileManager.cpp(48,51): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  CU4012-SFML.vcxproj -> C:\Users\ZAN0106\Downloads\CU4012-2nd-Coursework-Template-main\CU4012-2nd-Coursework-Template-main\x64\Debug\CU4012-SFML.exe
+﻿  Level.cpp
+C:\Users\ZAN0106\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(34,50): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\ZAN0106\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(58,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\ZAN0106\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(58,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\ZAN0106\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(108,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\ZAN0106\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(108,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  CU4012-SFML.vcxproj -> C:\Users\ZAN0106\Documents\GitHub\CU4012-2nd-Coursework-Template\x64\Debug\CU4012-SFML.exe
